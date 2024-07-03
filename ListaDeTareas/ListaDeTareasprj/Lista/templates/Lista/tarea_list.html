@@ -1,0 +1,29 @@
+{% if request.user.is_authenticated %}
+<p>{{ request.user }}</p>
+<a href="{% url 'logout' %}">Cerrar Sesión</a>
+{% else %}
+<a href="{% url 'login' %}">Iniciar Sesión</a>
+{% endif %}
+
+<hr>
+
+<h1> Lista de Tareas</h1>
+
+<table>
+    <tr>
+        <th>Elementos</th>
+    </tr>
+    {% for tarea in task %}
+    <tr>
+        <td>  {{ tarea.id }} -  {{ tarea.title }} </td>
+        <td><a href="{% url 'descripcion' tarea.id %}">Ver Descripción</a></td>
+        <td><a href="{% url 'task-create' %}">Agregar</a></td>
+        <td><a href="{% url 'task-update' tarea.id %}">Editar</a></td>
+        <td><a href="{% url 'task-delete' tarea.id %}">Borrar</a></td>
+
+    </tr>
+    {% empty %}
+    <h3>No hay elementos en la lista</h3>
+    <a href="{% url 'task-create' %}">Agregar nuevo elemento</a>
+    {% endfor %}
+</table>

@@ -1,0 +1,9 @@
+<form action="" method="post">
+{% csrf_token %}
+
+<p> ¿Estás seguro de eliminar está tarea? - {{task}}</p>
+<input type="submit" value = "Si, borrar">
+
+</form>
+
+<a href="{% url 'task' %}">No, Regresar!!</a>
